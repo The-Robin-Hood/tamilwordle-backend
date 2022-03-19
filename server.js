@@ -27,7 +27,7 @@ function saveDB(word) {
   var letters = word.match(/[\u0b80-\u0bff][\u0bbe-\u0bcd\u0bd7]?/gi);
   if (letters.length === 4) {
     tamilWordle.updateOne(
-      { _id: "62342a8019cac177b6db622d" },
+      { _id: "62359ca5afce3ce0ad655316" },
       { $push: { wordslist: letters, words: word } },
       function (error, success) {
         if (error) {
@@ -41,7 +41,7 @@ function saveDB(word) {
 }
 
 async function getDB() {
-  var wordlist = await tamilWordle.findById("62342a8019cac177b6db622d", {
+  var wordlist = await tamilWordle.findById("62359ca5afce3ce0ad655316", {
     _id: 0,
   });
   return wordlist;
