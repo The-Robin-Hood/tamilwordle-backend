@@ -48,32 +48,33 @@ async function getDB() {
 }
 
 app.get("/", function (req, res) {
-  res.redirect("https://google.com");
+  
+  res.json({Message:"Hello World !!"});
 });
 
 app.get("/allwords", async function (req, res) {
   var words = await getDB();
-  res.send(words);
+  res.json(words);
   res.end();
 });
 
 app.get("/search", async function (req, res) {
   var searchWord = req.query.word;
   if (!searchWord) {
-    res.send({ error: "Enter a valid word" });
+    res.json({ error: "Enter a valid word" });
     return;
   }
   var wordlist = await getDB();
   if (wordlist.words.includes(searchWord)) {
-    res.send({ valid: true });
+    res.json({ valid: true });
     return;
   } else {
     var internet = await fetchInternet(searchWord);
     if (internet) {
-      res.send({ valid: true });
+      res.json({ valid: true });
       return;
     } else {
-      res.send({ valid: false });
+      res.json({ valid: false });
       return;
     }
   }
